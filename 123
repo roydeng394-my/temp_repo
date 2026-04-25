@@ -1,0 +1,1 @@
+AssistantMessage(content=[TextBlock(text='API Error: 400 {"error":{"type":"<nil>","message":"模型服务调用失败 (request id: 202604230200066618681508268d9d695ZkZ1Ll) (request id: 20260423020006664071998268d9d6TvaSnDzZ)"},"type":"error"}')], model='<synthetic>', parent_tool_use_id=None, error='unknown')
