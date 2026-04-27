@@ -1,1 +1,15 @@
-AssistantMessage(content=[TextBlock(text='API Error: 400 {"error":{"type":"<nil>","message":"模型服务调用失败 (request id: 202604230200066618681508268d9d695ZkZ1Ll) (request id: 20260423020006664071998268d9d6TvaSnDzZ)"},"type":"error"}')], model='<synthetic>', parent_tool_use_id=None, error='unknown')
+# Step 2.10: Copy local message_parser.py to container (override SDK file)
+echo ""
+echo "Step 2.10: Copying local message_parser.py to container..."
+LOCAL_MESSAGE_PARSER="$PROJECT_ROOT/message_parser.py"
+CONTAINER_MESSAGE_PARSER="/workspace/.venv/lib/python3.12/site-packages/claude_agent_sdk/_internal/message_parser.py"
+
+if [ -f "$LOCAL_MESSAGE_PARSER" ]; then
+    echo "  Found local message_parser.py at: $LOCAL_MESSAGE_PARSER"
+    echo "  Copying to container path: $CONTAINER_MESSAGE_PARSER"
+    $CONTAINER_RUNTIME cp "$LOCAL_MESSAGE_PARSER" "$CONTAINER_NAME:$CONTAINER_MESSAGE_PARSER"
+    echo "✓ message_parser.py copied successfully"
+else
+    echo "  Warning: Local message_parser.py not found at $LOCAL_MESSAGE_PARSER"
+    echo "  Skipping message_parser override (using default SDK version)"
+fi
